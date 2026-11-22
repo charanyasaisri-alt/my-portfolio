@@ -1,38 +1,487 @@
-.App {
+/* ---------- RESET & BASE ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary: #8a6d3b;
+  --primary-dark: #6f552b;
+  --bg: #fdfcf9;
+  --bg-soft: #f5f2eb;
+  --text: #2c2a27;
+  --text-light: #5e5a54;
+  --card: #ffffff;
+  --border: #e8e2d8;
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+  --nav-bg: #ffffff;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 1rem;
+  padding-top: 80px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- NAVIGATION BAR ---------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: color 0.2s;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+/* ---------- MAIN CARD CONTAINER ---------- */
+.portfolio {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: 2rem;
+  padding: 2.2rem 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  min-height: 60vh;
+}
+
+/* ---------- PAGE SECTIONS ---------- */
+.page-section {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- PROFILE HEADER ---------- */
+.profile-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.8rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 4px solid var(--card);
+  box-shadow: 0 8px 20px rgba(138, 109, 59, 0.2);
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.header-text h1 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1f1d1a;
+  line-height: 1.2;
+}
+
+.header-text .tagline {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  margin-top: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.header-text .tagline i {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #2c2a27;
+  color: white;
+  padding: 0.6rem 1.3rem;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 0.8rem;
+  border: 1px solid #3a3733;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.github-link i { font-size: 1.2rem; }
+.github-link:hover { background: #3a3733; transform: scale(1.02); }
+
+/* ---------- SECTION TITLES ---------- */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #1f1d1a;
+  margin: 2.2rem 0 1.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-title i {
+  color: var(--primary);
+  font-size: 1.6rem;
+  width: 2rem;
+}
+
+.section-title:first-of-type {
+  margin-top: 0;
+}
+
+/* ---------- HOME PAGE ELEMENTS ---------- */
+.hero-content {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.hero-content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f1d1a;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(138, 109, 59, 0.2);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ---------- ABOUT ME ---------- */
+.about-card {
+  background: var(--bg-soft);
+  border-radius: 1.5rem;
+  padding: 1.8rem 2rem;
+  border: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+.about-card p {
+  color: var(--text-light);
+  font-size: 0.96rem;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.about-card p:last-of-type { margin-bottom: 0; }
+
+.about-quote {
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px dashed var(--border);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--primary-dark);
+  font-size: 1rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ---------- CERTIFICATIONS GRID ---------- */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 0.8rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.cert-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.4rem;
+  padding: 1.7rem 1.5rem 1.5rem;
+  transition: box-shadow 0.2s, border 0.2s, transform 0.1s;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.cert-card:hover {
+  border-color: #d4c9b8;
+  box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.cert-icon {
+  font-size: 2.4rem;
+  color: var(--primary);
+  margin-bottom: 0.7rem;
+}
+
+.cert-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1f1d1a;
+  margin-bottom: 0.3rem;
+}
+
+.cert-issuer {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 0.4rem;
+}
+
+.cert-year {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--primary-dark);
+  background: #f3ede3;
+  padding: 0.2rem 0.9rem;
+  border-radius: 30px;
+  margin-top: 0.3rem;
+  align-self: center;
+  border: 1px solid #e3d9c9;
+}
+
+.cert-link {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--primary);
+  display: inline-flex;
   align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  transition: gap 0.15s;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.cert-link i {
+  font-size: 0.7rem;
+  transition: transform 0.15s;
+}
+
+.cert-link:hover {
+  gap: 0.7rem;
+  color: var(--primary-dark);
+}
+
+.cert-link:hover i { transform: translateX(3px); }
+
+/* ---------- GITHUB CTA BLOCK ---------- */
+.github-block {
+  background: var(--bg-soft);
+  border-radius: 1.5rem;
+  padding: 1.5rem 1.8rem;
+  margin: 2.5rem 0 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+.github-block-text {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.github-block-text i {
+  font-size: 2.6rem;
+  color: #2c2a27;
+}
+
+.github-block-text h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f1d1a;
+  margin-bottom: 0.05rem;
+}
+
+.github-block-text p {
+  color: #5e5a54;
+  font-size: 0.9rem;
+}
+
+.btn-github-large {
+  background: #2c2a27;
   color: white;
+  padding: 0.75rem 1.7rem;
+  border-radius: 40px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+  border: 1px solid #3a3733;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-github-large i { font-size: 1.2rem; }
+.btn-github-large:hover { background: #3a3733; transform: scale(1.02); }
+
+/* ---------- QUICK CONTACT ---------- */
+.contact-mini {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+  margin: 1.8rem 0 0.5rem;
+  padding: 1.2rem 0.5rem;
+  border-top: 1px solid var(--border);
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.contact-mini a, .contact-mini span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.contact-mini a i, .contact-mini span i {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.contact-mini a:hover { color: var(--primary); }
+
+/* ---------- FOOTER ---------- */
+.footer-note {
+  margin-top: 1.8rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #9a958c;
+  border-top: 1px solid #f0ece4;
+  padding-top: 1.5rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+  body { padding: 0.7rem; padding-top: 80px; }
+  .nav-container { padding: 1rem; flex-direction: column; gap: 1rem; }
+  .nav-links { gap: 1.5rem; }
+  .portfolio { padding: 1.8rem 1.2rem; border-radius: 1.8rem; }
+  .profile-header { gap: 1.2rem; flex-direction: column; text-align: center; }
+  .header-text .tagline { justify-content: center; }
+  .avatar { width: 100px; height: 100px; }
+  .header-text h1 { font-size: 1.7rem; }
+  .github-block { flex-direction: column; align-items: flex-start; }
+  .btn-github-large { width: 100%; justify-content: center; }
+  .section-title { font-size: 1.3rem; }
+  .contact-mini { gap: 1rem; }
+  .about-card { padding: 1.4rem 1.2rem; }
+  .hero-content h2 { font-size: 2rem; }
 }
